@@ -63,7 +63,7 @@ const ApexChart = () => {
   }
   useEffect(() => {
     getData();
-  }, [period, granularities]);
+  }, [ granularities]);
 
   const series = [
     {
