@@ -18,7 +18,7 @@ const ApexChart = () => {
     key: "yesterday",
   });
   const [granularities, setGranularities] = useState({
-    label: "1 Hour",
+    label: "Hour",
     key: "1-hours",
   });
 
