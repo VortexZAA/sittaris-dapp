@@ -4,6 +4,7 @@ export default function Synaptiq() {
   let token = "";
   let plants = "plants/P25829";
   const url = "https://synaptiq.3esynaptiq.com/sp-sqa/v2";
+  
   async function login() {
     try {
       let data = {
@@ -34,13 +35,14 @@ export default function Synaptiq() {
   }
 
   async function getIndicatorData(
+    token: string,
     granularity: string,
     indicator: string,
     from_date: string,
     to_date: string
   ) {
     try {
-      const { token } = await login();
+      //const { token } = await login();
       let res = await axios.get(url + "/data", {
         params: {
           object: plants,

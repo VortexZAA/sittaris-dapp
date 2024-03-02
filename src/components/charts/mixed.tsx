@@ -11,6 +11,7 @@ const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 // convert to functional component
 
 const ApexChart = () => {
+  const [token, setToken] = useState("");
   const [line, setLineData]: any = useState([]);
   const [column, setColumnData]: any = useState([]);
   const [period, setPeriod] = useState({
@@ -26,9 +27,22 @@ const ApexChart = () => {
 
   async function getData() {
     try {
-      const start_date = (PeriodData.find((item) => item.key === period.key)?.start_date)?.toISOString();
-      const end_date = (PeriodData.find((item) => item.key === period.key)?.end_date)?.toISOString();
+      let NewToken;
+      if (!token) {
+        let res = await synaptiq.login();
+        NewToken = res.token;
+        setToken(res.token);
+      } else {
+        NewToken = token;
+      }
+      const start_date = PeriodData.find(
+        (item) => item.key === period.key
+      )?.start_date?.toISOString();
+      const end_date = PeriodData.find(
+        (item) => item.key === period.key
+      )?.end_date?.toISOString();
       let column = await synaptiq.getIndicatorData(
+        NewToken,
         granularities.key,
         "energy.generation",
         start_date || "",
@@ -36,6 +50,7 @@ const ApexChart = () => {
       );
       setLineData(column || []);
       let line = await synaptiq.getIndicatorData(
+        NewToken,
         granularities.key,
         "irradiation.actual",
         start_date || "",
@@ -48,10 +63,7 @@ const ApexChart = () => {
   }
   useEffect(() => {
     getData();
-  }, [
-    period,
-    granularities,
-  ]);
+  }, [period, granularities]);
 
   const series = [
     {
