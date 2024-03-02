@@ -22,7 +22,7 @@ export default function MainLayout({
       >
         <Header />
         <div className="flex w-full min-h-[80vh] z-10">{children}</div>
-        <footer className="w-full  flex flex-col items-center justify-center z-20 pb-6">
+        <footer className="w-full  flex flex-col items-start gap-6 justify-center z-20 pb-6">
           <Image
             src="/logo.svg"
             alt="Logo"
