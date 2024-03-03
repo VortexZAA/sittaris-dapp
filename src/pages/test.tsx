@@ -4,12 +4,12 @@ import synaptiq from "@/services/synaptiq";
 import { useEffect, useState } from "react";
 
 export default function Home() {
-  
   return (
     <MainLayout title="Test">
       <h1>Deneme</h1>
-
-      <ApexChart />
+      <div className="max-w-md w-full">
+        <ApexChart />
+      </div>
     </MainLayout>
   );
 }

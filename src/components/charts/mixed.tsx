@@ -14,6 +14,12 @@ const ApexChart = () => {
   const [token, setToken] = useState("");
   const [line, setLineData]: any = useState([]);
   const [column, setColumnData]: any = useState([]);
+  const [parameterData, setParameterData] = useState({
+    energy: "0",
+    specific: "0",
+    income: "N/A",
+    meter: "N/A",
+  });
   const [period, setPeriod] = useState({
     label: "Yesterday",
     key: "yesterday",
@@ -58,7 +64,11 @@ const ApexChart = () => {
         0
       );
       console.log("sumSpecific", sumSpecific.toFixed(2));
-      let energy =  await synaptiq.getIndicatorData(
+      setParameterData((prev: any) => ({
+        ...prev,
+        specific: sumSpecific.toFixed(2),
+      }));
+      let energy = await synaptiq.getIndicatorData(
         NewToken,
         gran?.["default-granularity"] || "1-hours",
         "energy.generation",
@@ -70,6 +80,10 @@ const ApexChart = () => {
         0
       );
       console.log("sumEnergy", sumEnergy.toFixed(2));
+      setParameterData((prev: any) => ({
+        ...prev,
+        energy: sumEnergy.toFixed(2),
+      }));
     } catch (error) {
       console.log("error", error);
     }
@@ -114,7 +128,6 @@ const ApexChart = () => {
   }
   useEffect(() => {
     getData();
-    setParameterPeriod(period);
   }, [granularities]);
   useEffect(() => {
     getSumData();
@@ -188,6 +201,49 @@ const ApexChart = () => {
 
   return (
     <div className="w-full apexChart flex flex-col text-black dark:text-white pt-20 ">
+      <div className="w-full flex flex-col">
+        <div className="flex items-center gap-3 w-full justify-between">
+          <button className="flex items-center gap-2">
+            Parameter{" "}
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 10L8 6L4 10"
+                stroke="#F6911D"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+          <PeriodDropDown
+            period={parameterPeriod}
+            setPeriod={setParameterPeriod}
+            placement="bottom-end"
+          />
+        </div>
+        <div className="h-52 w-full grid grid-cols-2 text-white/60">
+          {[
+            { label: "Energy (Meter)", value: parameterData.meter, scale: ""},
+            {
+              label: "Energy Specific (Obsolete)",
+              value: parameterData.specific, scale: "kWh/kWp" 
+            },
+            { label: "Energy (kWh)", value: parameterData.energy, scale: "kWh"},
+            { label: "Income", value: parameterData.income, scale: "" },
+          ].map((item, index) => (
+            <div key={index} className="flex flex-col gap-1">
+              <span>{item.label}</span>
+              <span>{item.value} {item.scale}</span>
+            </div>
+          ))}
+        </div>
+      </div>
       <div className="w-full flex items-center gap-3 ">
         <div className="flex items-center gap-2 text-gray-300">
           Period: <PeriodDropDown period={period} setPeriod={setPeriod} />{" "}
@@ -207,7 +263,7 @@ const ApexChart = () => {
         series={series}
         type="line"
         height={350}
-        width={500}
+        width={"100%"}
       />
     </div>
   );
@@ -218,14 +274,16 @@ export default ApexChart;
 function PeriodDropDown({
   period,
   setPeriod,
+  placement = "bottom-start",
 }: {
   period: any;
   setPeriod: Function;
+  placement?: string;
 }) {
   return (
     <Dropdown
       offset={[0, 4]}
-      placement={`${"bottom-start"}`}
+      placement={`${placement}`}
       btnClassName="block p-2  dark:text-white "
       button={
         <div className="flex items-center hover:text-[#03AE5A] gap-2">
