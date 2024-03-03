@@ -18,12 +18,62 @@ const ApexChart = () => {
     label: "Yesterday",
     key: "yesterday",
   });
+  const [parameterPeriod, setParameterPeriod] = useState({
+    label: "Yesterday",
+    key: "yesterday",
+  });
   const [granularities, setGranularities] = useState({
     label: "Hour",
     key: "1-hours",
   });
 
   const synaptiq = Synaptiq();
+
+  async function getSumData() {
+    try {
+      let NewToken;
+      if (!token) {
+        let res = await synaptiq.login();
+        NewToken = res.token;
+        setToken(res.token);
+      } else {
+        NewToken = token;
+      }
+      const start_date = PeriodData.find(
+        (item) => item.key === parameterPeriod.key
+      )?.start_date?.toISOString();
+      const end_date = PeriodData.find(
+        (item) => item.key === parameterPeriod.key
+      )?.end_date?.toISOString();
+      let gran = PeriodData.find((item) => item.key === parameterPeriod.key);
+      let specific = await synaptiq.getIndicatorData(
+        NewToken,
+        gran?.["default-granularity"] || "1-hours",
+        "energy.specific",
+        start_date || "",
+        end_date || ""
+      );
+      let sumSpecific = specific.data.reduce(
+        (acc: any, item: any) => acc + item[1][0][0],
+        0
+      );
+      console.log("sumSpecific", sumSpecific.toFixed(2));
+      let energy =  await synaptiq.getIndicatorData(
+        NewToken,
+        gran?.["default-granularity"] || "1-hours",
+        "energy.generation",
+        start_date || "",
+        end_date || ""
+      );
+      let sumEnergy = energy.data.reduce(
+        (acc: any, item: any) => acc + item[1][0][0],
+        0
+      );
+      console.log("sumEnergy", sumEnergy.toFixed(2));
+    } catch (error) {
+      console.log("error", error);
+    }
+  }
 
   async function getData() {
     try {
@@ -48,6 +98,7 @@ const ApexChart = () => {
         start_date || "",
         end_date || ""
       );
+
       setLineData(column || []);
       let line = await synaptiq.getIndicatorData(
         NewToken,
@@ -63,7 +114,11 @@ const ApexChart = () => {
   }
   useEffect(() => {
     getData();
-  }, [ granularities]);
+    setParameterPeriod(period);
+  }, [granularities]);
+  useEffect(() => {
+    getSumData();
+  }, [parameterPeriod]);
 
   const series = [
     {
@@ -224,13 +279,6 @@ function GranularitiesDropDown({
       });
     }
   }, [period]);
-  console.log(
-    PeriodData.find((item) => {
-      //console.log("item", item.key === period.key, item.key, period.key);
-
-      return item.key === period.key;
-    })
-  );
 
   return (
     <Dropdown

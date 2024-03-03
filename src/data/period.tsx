@@ -26,8 +26,10 @@ export const PeriodData = [
     ],
     key: "yesterday",
     label: "Yesterday",
-    start_date : new Date(new Date().getTime() - 48 * 60 * 60 * 1000),
-    end_date: new Date(new Date().getTime() - 24 * 60 * 60 * 1000),
+    start_date : new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() - 1, 0, 0, 0),
+
+    end_date: //yesterdat 23:59 end
+    new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() - 1, 23, 59, 59),
   },
   {
     "default-granularity": "1-days",
