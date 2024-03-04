@@ -51,7 +51,7 @@ export default function Document() {
           content="Sittaris dApp"
         />
       </Head>
-      <body className="dark">
+      <body className="">
         <Main />
         <NextScript />
       </body>

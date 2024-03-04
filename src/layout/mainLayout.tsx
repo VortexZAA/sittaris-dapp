@@ -1,4 +1,5 @@
 import Header from "@/components/header";
+import Sidebar from "@/components/sidebar";
 import Head from "next/head";
 import Image from "next/image";
 
@@ -18,10 +19,13 @@ export default function MainLayout({
         <title>{titleRender}</title>
       </Head>
       <main
-        className={`flex min-h-[100dvh] h-full w-full flex-col items-center justify-end px-4 md:px-6  relative dark:bgGradient bg-white dark:text-white text-black pt-20 ${""} `}
+        className={`flex min-h-[100dvh] h-full w-full flex-col items-center justify-end px-4 md:px-6  relative bgGradientLight  dark:bgGradient bg-white dark:text-white text-black pt-20 ${""} `}
       >
         <Header />
-        <div className="flex w-full min-h-[80vh] z-10">{children}</div>
+        <div className="flex w-full min-h-[80vh] z-10">
+          <Sidebar />
+          <div className="px-3 w-full flex-col gap-6">{children}</div>
+        </div>
         <footer className="w-full  flex flex-col items-start gap-6 justify-center z-20 pb-6">
           <Image
             src="/logo.svg"
@@ -57,7 +61,7 @@ export default function MainLayout({
 
 const footerData = [
   {
-    id:1,
+    id: 1,
     title: "Product",
     children: [
       {
@@ -72,14 +76,14 @@ const footerData = [
       },
       {
         id: 3,
-        title:"Brand Identity",
-        link: "/brand-identity"
-      }
+        title: "Brand Identity",
+        link: "/brand-identity",
+      },
     ],
   },
   {
-    id:2,
-    title:"Social",
+    id: 2,
+    title: "Social",
     children: [
       {
         id: 1,
@@ -114,16 +118,14 @@ const footerData = [
     ],
   },
   {
-    id:3,
-    title:"Contact",
+    id: 3,
+    title: "Contact",
     children: [
       {
         id: 1,
         title: "company@mail.com",
         link: "mailto:company@mail.com",
-      }
+      },
     ],
-  }
-
-
-]
+  },
+];

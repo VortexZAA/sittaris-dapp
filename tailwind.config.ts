@@ -13,12 +13,14 @@ const config: Config = {
       colors: {
         courseblack: "#110B17",
         eduOrange: "#FFA500",
-        coursepurle: {
-          200: "#D9CBF5",
-          300: "#C1A7F5",
-          400: "#AC9CEB",
-          500: "#7E02E0",
-          900: "#5F29BA",
+        sittaris: {
+          200: "#C8F180",
+          300: "#F6911D",
+          400: "#FFF15F",
+          500: "#C8F180",
+          700: "#00CF77",
+          800: "#03AE5A",
+          900: "#083432",
         },
         coursepink: "#F57A91",
         courseblue: "#73CAF7",

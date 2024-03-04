@@ -11,6 +11,7 @@ export interface AuthState {
   change: boolean;
   status: "idle" | "loading" | "failed";
   locale: string;
+  darkMode: boolean;
 }
 
 const initialState: AuthState = {
@@ -23,6 +24,7 @@ const initialState: AuthState = {
   status: "loading",
   change: false,
   locale: "en",
+  darkMode: false,
 };
 
 export const AuthSlice = createSlice({
@@ -30,6 +32,9 @@ export const AuthSlice = createSlice({
   initialState,
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
+    darkModeTogle: (state, action: PayloadAction<boolean>) => {
+      state.darkMode = action.payload;
+    },
     toggleLocale(state, { payload }) {
       payload = payload || state.locale;
       localStorage.setItem("i18nextLng", payload);
@@ -84,7 +89,8 @@ export const {
   setClear,
   setnftId,
   toggleLocale,
-  toggleMenu
+  toggleMenu,
+  darkModeTogle
 } = AuthSlice.actions;
 
 export const selectData = (state: RootState) => ({
@@ -96,6 +102,7 @@ export const selectData = (state: RootState) => ({
   change: state.Auth.change,
   locale: state.Auth.locale,
   currentMenu: state.Auth.currentMenu,
+  darkMode: state.Auth.darkMode,
 });
 
 export default AuthSlice.reducer;

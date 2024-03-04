@@ -24,7 +24,7 @@ export default function Header() {
               alt="Logo"
               width={42}
               height={60}
-              className="mr-4 h-20 w-fit"
+              className="mr-4 h-20 w-fit dark:text-white text-black"
             />
           </Link>
           <div className="flex items-center gap-6 dark:text-white">
