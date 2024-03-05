@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import Loader from "./tailwind/loader";
 import { useAppSelector } from "@/hook/redux/hooks";
 import { selectData } from "@/redux/auth/auth";
+import { LogoTextIcon } from "./icons/logo";
 
 export default function Header() {
   const [loading, setLoading] = useState(false);
@@ -18,14 +19,15 @@ export default function Header() {
       {loading && <Loader />}
       <header className=" absolute left-0 top-0 w-full px-3 md:px-6 py-2 z-40">
         <div className="flex items-center justify-between">
-          <Link href="/" className="shrink-0">
+          <Link href="/" className="shrink-0 flex items-center">
             <Image
               src="/logo.svg"
               alt="Logo"
               width={42}
               height={60}
-              className="mr-4 h-20 w-fit dark:text-white text-black"
+              className="mr-4 h-24 w-fit dark:text-white text-black"
             />
+            <LogoTextIcon className="h-4 w-fit" />
           </Link>
           <div className="flex items-center gap-6 dark:text-white">
             <div className=" flex items-center gap-2">
