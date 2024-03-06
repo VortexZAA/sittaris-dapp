@@ -4,7 +4,6 @@ import AnimateHeight from "react-animate-height";
 import { InfoIcon } from "./icons";
 import Synaptiq from "@/services/synaptiq";
 import { PeriodData } from "@/data/period";
-import { Satoshi } from "@/fonts";
 
 export default function Parametre() {
   const [activeParametre, setActiveParametre] = useState(false);
@@ -77,7 +76,7 @@ export default function Parametre() {
     getSumData();
   }, [parameterPeriod]);
   return (
-    <div className={` ${Satoshi.className} w-full flex flex-col`}>
+    <div className={` w-full flex flex-col`}>
       <div className="flex items-center gap-3 w-full justify-between">
         <button
           onClick={() => setActiveParametre(!activeParametre)}

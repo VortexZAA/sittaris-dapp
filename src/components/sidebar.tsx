@@ -15,7 +15,7 @@ import AnimateHeight from "react-animate-height";
 import pb from "@/lib/pocketbase";
 import { useAppDispatch, useAppSelector } from "@/hook/redux/hooks";
 import { darkModeTogle, selectData, toggleMenu } from "@/redux/auth/auth";
-import { Fontspring } from "@/fonts";
+
 export default function Sidebar() {
   const router = useRouter();
   const { currentMenu, darkMode } = useAppSelector(selectData);
@@ -107,7 +107,7 @@ export default function Sidebar() {
     );
   };
   return (
-    <nav className={` ${Fontspring.className} w-64 flex pt-12 border-r border-sittaris-300/10 px-3 md:px-4`}>
+    <nav className={` font-fontspring w-64 flex pt-12 border-r border-sittaris-300/10 px-3 md:px-4`}>
       {
         <ul className="flex flex-col gap-8 text-base z-10 text-black/60 dark:text-white/60 h-[80vh] overflow-y-auto pr-3 pb-6">
           <li key={"connectwallet"} className="w-full" >

@@ -52,6 +52,8 @@ const config: Config = {
       manrope: ["Manrope", "sans-serif"],
       satoshi: ["Satoshi", "arial"],
       fontspring: ["Fontspring", "cursive"],
+      fontspringBold: ["FontspringBold", "cursive"],
+      fontspringLight: ["FontspringLight", "cursive"],
     },
   },
   plugins: [],

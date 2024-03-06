@@ -1,7 +1,6 @@
 import Header from "@/components/header";
 import { LogoTextIcon } from "@/components/icons/logo";
 import Sidebar from "@/components/sidebar";
-import { Satoshi } from "@/fonts";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
@@ -22,7 +21,7 @@ export default function MainLayout({
         <title>{titleRender}</title>
       </Head>
       <main
-        className={`flex min-h-[100dvh] h-full w-full flex-col items-center justify-end  relative bgGradientLight  dark:bgGradient bg-white dark:text-white text-black pt-24 ${""} ${Satoshi.className} `}
+        className={`flex min-h-[100dvh] h-full w-full flex-col items-center justify-end  relative bgGradientLight  dark:bgGradient bg-white dark:text-white text-black pt-24 ${""} font-satoshi `}
       >
         <Header />
         <div className="flex w-full min-h-[80vh] z-10 ">
