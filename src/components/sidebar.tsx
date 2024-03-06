@@ -111,7 +111,7 @@ export default function Sidebar() {
       {
         <ul className="flex flex-col gap-8 text-base z-10 text-black/60 dark:text-white/60 h-[80vh] overflow-y-auto pr-3 pb-6">
           <li key={"connectwallet"} className="w-full" >
-            <button className="flex gap-0 items-center border-4 w-full px-2 py-4 rounded-lg border-sittaris-800">
+            <button className="flex gap-0 hover:text-black transition-colors dark:hover:text-white  items-center border-4 w-full px-2 py-4 rounded-lg border-sittaris-800">
               Connect Wallet
             </button>
           </li>
