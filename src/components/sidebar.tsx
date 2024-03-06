@@ -122,7 +122,7 @@ export default function Sidebar() {
                 className={`flex items-center font-bold gap-3 textStyle ${
                   pathname === "/profile"
                     ? " text-purple-600  font-medium"
-                    : " hover:text-white"
+                    : " dark:hover:text-white hover:text-black"
                 } `}
               >
                 
@@ -141,7 +141,7 @@ export default function Sidebar() {
                   className={`flex items-center font-normal gap-3 ${
                     isCurrentMenu(item)
                       ? "gradientText text-purple-600  font-medium"
-                      : " hover:text-white"
+                      : " dark:hover:text-white hover:text-black"
                   } `}
                   href={`/${item.path}`}
                 >
@@ -165,7 +165,7 @@ export default function Sidebar() {
               </div>
               {item?.children && (
                 <AnimateHeight height={currentMenu === item.title ? "auto" : 0}>
-                  <ul className="flex flex-col w-full gap-3 pt-3 text-">
+                  <ul className="flex flex-col w-full gap-3 pt-3 ">
                     {item?.children &&
                       item?.children?.length > 0 &&
                       item?.children.map((course: any) => {
@@ -175,8 +175,8 @@ export default function Sidebar() {
                               href={`/courses/${course.pathName}`}
                               className={
                                 path === course.pathName
-                                  ? "gradientText text-purple-600  font-medium"
-                                  : "text-white/60 hover:text-white"
+                                  ? "gradientText  text-black dark:white  font-medium"
+                                  : "dark:text-white/60 text-black/60  hover:text-black dark:hover:text-white"
                               }
                             >
                               {course.title}
