@@ -110,7 +110,7 @@ export default function ParametreVertical() {
         />
       </div>
       <AnimateHeight height={activeParametre ? "auto" : 0}>
-        <div className="w-full grid gap-3 py-3 text-black/60 dark:text-white/60">
+        <div className="w-full grid gap-3 py-3 text-black dark:text-white">
           {[
             {
               label: "Energy (Meter)",
@@ -129,7 +129,7 @@ export default function ParametreVertical() {
             },
             { label: "Income", value: parameterData.income, scale: "" },
           ].map((item, index) => (
-            <div key={index} className="flex justify-between gap-2 text-white">
+            <div key={index} className="flex justify-between gap-2 ">
               <div className="flex gap-1">
                 {item.label}
                 <button className=" hover:text-black transition-colors dark:hover:text-white">
