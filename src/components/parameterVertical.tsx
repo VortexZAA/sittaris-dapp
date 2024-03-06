@@ -82,7 +82,7 @@ export default function ParametreVertical() {
           /* onClick={() => setActiveParametre(!activeParametre)} */
           className="flex items-center text-2xl gap-2 text-sittaris-300"
         >
-          Parameter{" "}
+         <h3>Parameter</h3>
           {/* <svg
             width="16"
             height="16"
