@@ -51,7 +51,8 @@ export default function MainLayout({
                       key={child.id}
                       href={child.link}
                       target="_blank"
-                      rel="noreferrer"
+                      rel="noreferrer" 
+                      className="hover:text-sittaris-800 transition-colors w-fit"
                     >
                       {child.title}
                     </a>
