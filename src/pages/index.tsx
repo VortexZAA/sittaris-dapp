@@ -20,7 +20,7 @@ export default function Home() {
         <h3 className={`${'font-fontspringBold'} font-semibold`}>
           Dashboard
         </h3>
-        <div className="px-6 border-[3px] border-white/60 rounded-[18px]">
+        <div className="px-6 border-[3px] border-black/60 dark:border-white/60 rounded-[18px]">
           <ApexChart seriesNames={true} />
         </div>
         <div className="grid grid-cols-2 gap-6 text-base font-medium ">

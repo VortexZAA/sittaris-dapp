@@ -119,7 +119,7 @@ export default function Sidebar() {
             <div className="flex gap-0 items-center">
               <Link
                 href="/profile"
-                className={`flex items-center font-bold gap-3 textStyle ${
+                className={`flex items-center font-fontspringBold font-bold gap-3 textStyle ${
                   pathname === "#"
                     ? " text-purple-600  font-medium"
                     : " dark:hover:text-white hover:text-black"
