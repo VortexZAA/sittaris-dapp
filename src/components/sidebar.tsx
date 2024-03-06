@@ -120,13 +120,13 @@ export default function Sidebar() {
               <Link
                 href="/profile"
                 className={`flex items-center font-bold gap-3 textStyle ${
-                  pathname === "/profile"
+                  pathname === "#"
                     ? " text-purple-600  font-medium"
                     : " dark:hover:text-white hover:text-black"
                 } `}
               >
                 
-                <span>Profile</span>
+                <span>Public Sale</span>
                 <ArrowLeftGradientIcon />
               </Link>
             </div>
