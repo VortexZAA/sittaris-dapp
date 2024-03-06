@@ -7,7 +7,7 @@ export function AppDetails() {
     stake: "1.000 SIT",
   });
   return (
-    <div className="flex flex-col gap-6 w-full text-base font-semibold">
+    <div className="flex flex-col gap-6 w-full ">
       <h3 className="text-sittaris-300">Sittaris App Details</h3>
       <div className="flex justify-between items-center w-full">
         <h4>

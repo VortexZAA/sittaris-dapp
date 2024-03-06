@@ -24,7 +24,7 @@ export default function Home() {
         <div className="px-6 border-[3px] border-white/60 rounded-[18px]">
           <ApexChart seriesNames={true} />
         </div>
-        <div className="grid grid-cols-2 gap-6 ">
+        <div className="grid grid-cols-2 gap-6 text-base font-medium ">
           <div className="flex w-full border-r pr-6 border-white/60">
             <AppDetails />
           </div>

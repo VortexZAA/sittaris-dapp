@@ -81,7 +81,7 @@ export default function ParametreVertical() {
       <div className="flex items-center gap-3 w-full justify-between">
         <button
           /* onClick={() => setActiveParametre(!activeParametre)} */
-          className="flex items-center gap-2 text-sittaris-300"
+          className="flex items-center text-2xl gap-2 text-sittaris-300"
         >
           Parameter{" "}
           {/* <svg
