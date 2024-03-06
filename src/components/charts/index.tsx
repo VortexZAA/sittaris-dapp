@@ -139,7 +139,7 @@ export function ZoneDropDown({
       placement={`${placement}`}
       btnClassName="block p-2  dark:text-white w-full "
       button={
-        <div className="flex items-center justify-between hover:text-[#03AE5A] gap-2 zeroBtn py-4 px-6 w-full">
+        <div className="flex text-white items-center justify-between hover:text-[#03AE5A] gap-2 zeroBtn py-4 px-6 w-full">
           {zone.label}
           <DownIcon className="w-4 h-fit" />
         </div>
