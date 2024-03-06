@@ -14,7 +14,7 @@ export const FontspringBold = localFont({
 export const Fontspring = localFont({
   src: [
     {
-      path: "/fonts/demo-fonts/demo-termina-regular.otf",
+      path: "./fonts/demo-fonts/demo-termina-regular.otf",
       weight: "500",
       style: "normal",
     },
@@ -24,7 +24,7 @@ export const Fontspring = localFont({
 export const FontspringLight = localFont({
   src: [
     {
-      path: "/fonts/demo-fonts/demo-termina-light.otf",
+      path: "./fonts/demo-fonts/demo-termina-light.otf",
       weight: "500",
       style: "normal",
     },
@@ -33,6 +33,6 @@ export const FontspringLight = localFont({
 });
 
 export const Satoshi = localFont({
-    src: "/fonts/Satoshi-Variable.ttf",
+    src: "./fonts/Satoshi-Variable.ttf",
     display: 'swap',
   });
