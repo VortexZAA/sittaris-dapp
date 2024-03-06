@@ -1,5 +1,6 @@
 import Link from "next/link";
 import {
+  ArrowLeftGradientIcon,
   CoursesIcon,
   DropdowIcon,
   MoonIcon,
@@ -14,6 +15,7 @@ import AnimateHeight from "react-animate-height";
 import pb from "@/lib/pocketbase";
 import { useAppDispatch, useAppSelector } from "@/hook/redux/hooks";
 import { darkModeTogle, selectData, toggleMenu } from "@/redux/auth/auth";
+import { Fontspring } from "@/fonts";
 export default function Sidebar() {
   const router = useRouter();
   const { currentMenu, darkMode } = useAppSelector(selectData);
@@ -35,10 +37,15 @@ export default function Sidebar() {
   useEffect(() => {
     getCourses();
     //dispatch(toggleMenu(localStorage.getItem("currentMenu") || ""));
+    const local = localStorage.getItem("darkMode");
+    if (local ) {
+      darkModeToggle(local === "true" ? true : false);
+    }
   }, []);
   function darkModeToggle(status: boolean) {
     const html = document.querySelector("html");
     dispatch(darkModeTogle(status));
+    localStorage.setItem("darkMode", status ? "true" : "false");
     if (status) {
       html?.classList.add("dark");
     } else {
@@ -100,13 +107,29 @@ export default function Sidebar() {
     );
   };
   return (
-    <nav className="w-60 flex pt-12 border-r border-sittaris-300/10">
+    <nav className={` ${Fontspring.className} w-64 flex pt-12 border-r border-sittaris-300/10 px-3 md:px-4`}>
       {
-        <ul className="flex flex-col gap-10 text-lg z-10 text-black/60 dark:text-white/60 h-[80vh] overflow-y-auto pr-3 pb-6">
-          <li key={"connectwallet"}>
-            <button className="flex gap-0 items-center border-4 px-3 py-4 rounded-lg border-sittaris-800">
+        <ul className="flex flex-col gap-8 text-base z-10 text-black/60 dark:text-white/60 h-[80vh] overflow-y-auto pr-3 pb-6">
+          <li key={"connectwallet"} className="w-full" >
+            <button className="flex gap-0 items-center border-4 w-full px-2 py-4 rounded-lg border-sittaris-800">
               Connect Wallet
             </button>
+          </li>
+          <li>
+            <div className="flex gap-0 items-center">
+              <Link
+                href="/profile"
+                className={`flex items-center font-bold gap-3 textStyle ${
+                  pathname === "/profile"
+                    ? " text-purple-600  font-medium"
+                    : " hover:text-white"
+                } `}
+              >
+                
+                <span>Profile</span>
+                <ArrowLeftGradientIcon />
+              </Link>
+            </div>
           </li>
           {sidebar.map((item) => (
             <li key={item.id}>

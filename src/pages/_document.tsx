@@ -4,6 +4,14 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
+        <link
+          href="/fonts/demo-fonts/demo-termina-regular.otf"
+          rel="stylesheet"
+        />
+        <link
+          href="/fonts/Satoshi-Variable.ttf"
+          rel="stylesheet"
+          />
         <link rel="icon" href="/favicon.svg" />
         <meta name="msapplication-TileImage" content="/favicon.svg" />
         <meta

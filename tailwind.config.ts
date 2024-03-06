@@ -50,6 +50,8 @@ const config: Config = {
     },
     fontFamily: {
       manrope: ["Manrope", "sans-serif"],
+      satoshi: ["Satoshi", "arial"],
+      fontspring: ["Fontspring", "cursive"],
     },
   },
   plugins: [],
