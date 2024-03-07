@@ -62,17 +62,17 @@ export default function Sidebar() {
       children: [
         {
           id: 0,
-          title: "Stake 1",
+          title: "Zone 1",
           pathName: "1",
         },
         {
           id: 1,
-          title: "Stake 2",
+          title: "Zone 2",
           pathName: "2",
         },
         {
           id: 2,
-          title: "Stake 3",
+          title: "Zone 3",
           pathName: "3",
         },
       ],

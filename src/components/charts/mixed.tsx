@@ -19,9 +19,11 @@ const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 const ApexChart = ({
   seriesNames = true,
+  zoneId = 1,
   height = 280,
 }: {
   seriesNames?: boolean;
+  zoneId?: number;
   height?: number;
 }) => {
   const { darkMode } = useAppSelector(selectData);
@@ -30,8 +32,8 @@ const ApexChart = ({
   const [column, setColumnData]: any = useState([]);
   const [data, setData] = useState<any[]>([]);
   const [zone, setZone] = useState({
-    label: "Zone 1",
-    key: "plants/P25829",
+    label: "Zone " + zoneId,
+    key: Zones[zoneId - 1]?.ref || "plants/P25829",
   });
   const [period, setPeriod] = useState({
     label: "Yesterday",
@@ -90,7 +92,7 @@ const ApexChart = ({
   useEffect(() => {
     getData();
   }, [granularities, zone]);
-
+  
   const series = [
     {
       name: seriesNames ? "Energy (kWh)" : "",
@@ -176,7 +178,7 @@ const ApexChart = ({
       }) || []
     );
   }, []);
-  console.log("data", data);
+  //console.log("data", data);
 
   return (
     <div className="w-full apexChart flex flex-col text-black dark:text-white py-6 ">
