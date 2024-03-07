@@ -19,26 +19,14 @@ import { darkModeTogle, selectData, toggleMenu } from "@/redux/auth/auth";
 export default function Sidebar() {
   const router = useRouter();
   const { currentMenu, darkMode } = useAppSelector(selectData);
-  const [courses, setCourses] = useState<any[]>([]);
   const dispatch = useAppDispatch();
 
-  async function getCourses() {
-    try {
-      const courses = await pb.collection("courses").getFullList({
-        filter: `end_date >= "${new Date().toISOString()}"`,
-      });
-      setCourses(courses);
-    } catch (error) {
-      console.log(error);
-    }
-  }
   const pathname = router.pathname;
   const { path } = router.query as { path: string };
   useEffect(() => {
-    getCourses();
     //dispatch(toggleMenu(localStorage.getItem("currentMenu") || ""));
     const local = localStorage.getItem("darkMode");
-    if (local ) {
+    if (local) {
       darkModeToggle(local === "true" ? true : false);
     }
   }, []);
@@ -58,39 +46,45 @@ export default function Sidebar() {
       id: 0,
       title: "Dashboard",
       icon: "",
-      path: "#",
+      path: "/",
     },
     {
       id: 1,
+      title: "Personal Information",
+      icon: "",
+      path: "/personel-info",
+    },
+    {
+      id: 2,
       title: "Stake",
       icon: "",
-      path: "#",
+      path: "/stake",
       children: [
         {
           id: 0,
-          title: "Stake",
-          pathName: "stake",
+          title: "Stake 1",
+          pathName: "1",
         },
         {
           id: 1,
-          title: "Unstake",
-          pathName: "unstake",
+          title: "Stake 2",
+          pathName: "2",
         },
         {
           id: 2,
-          title: "Staking History",
-          pathName: "staking-history",
+          title: "Stake 3",
+          pathName: "3",
         },
       ],
     },
     {
-      id: 2,
+      id: 3,
       title: "Leaderboard",
       icon: "",
       path: "#",
     },
     {
-      id: 3,
+      id: 4,
       title: "Buy SIT Token",
       icon: "",
       path: "#",
@@ -100,18 +94,20 @@ export default function Sidebar() {
   console.log(currentMenu);
   const isCurrentMenu = (item: any) => {
     return (
-      pathname.replace("/", "") === item.path ||
+      pathname === item.path ||
       (item?.children &&
         item?.children?.filter((course: any) => course.pathName === path)
           .length > 0)
     );
   };
   return (
-    <nav className={` font-fontspring w-64 flex pt-12 border-r border-sittaris-300/10 px-3 md:px-4`}>
+    <nav
+      className={` font-fontspring w-72 flex pt-12 border-r border-sittaris-300/10 px-3 md:px-4`}
+    >
       {
-        <ul className="flex flex-col gap-8 text-base z-10 text-black/60 dark:text-white/60 h-[80vh] overflow-y-auto pr-3 pb-6">
-          <li key={"connectwallet"} className="w-full" >
-            <button className="flex gap-0 hover:text-black transition-colors dark:hover:text-white  items-center border-4 w-full px-2 py-4 rounded-lg border-sittaris-800">
+        <ul className="flex flex-col gap-8 text-base z-10 text-black/60 dark:text-white/60 h-[85vh] overflow-y-auto w-full pb-12 py-2">
+          <li key={"connectwallet"} className="w-full">
+            <button className="flex justify-center items-center gap-0 hover:text-black transition-colors dark:hover:text-white border-4 w-full px-2 py-4 rounded-lg border-sittaris-800">
               Connect Wallet
             </button>
           </li>
@@ -125,7 +121,6 @@ export default function Sidebar() {
                     : " dark:hover:text-white hover:text-black"
                 } `}
               >
-                
                 <span>Public Sale</span>
                 <ArrowLeftGradientIcon />
               </Link>
@@ -138,10 +133,10 @@ export default function Sidebar() {
                   onClick={() => {
                     dispatch(toggleMenu(item.title));
                   }}
-                  className={`flex items-center font-normal gap-3 ${
+                  className={`flex items-center border-b-2 border-transparent transition-colors font-normal gap-3 ${
                     isCurrentMenu(item)
-                      ? "gradientText text-purple-600  font-medium"
-                      : " dark:hover:text-white hover:text-black"
+                      ? " !border-sittaris-300 text-black dark:text-white  font-medium"
+                      : " dark:hover:text-white hover:text-black hover:border-sittaris-300"
                   } `}
                   href={`/${item.path}`}
                 >
@@ -168,18 +163,18 @@ export default function Sidebar() {
                   <ul className="flex flex-col w-full gap-3 pt-3 ">
                     {item?.children &&
                       item?.children?.length > 0 &&
-                      item?.children.map((course: any) => {
+                      item?.children.map((child: any) => {
                         return (
-                          <li key={course.id}>
+                          <li key={child.id}>
                             <Link
-                              href={`/courses/${course.pathName}`}
+                              href={`${item.path}/${child.pathName}`}
                               className={
-                                path === course.pathName
+                                path === child.pathName
                                   ? "gradientText  text-black dark:white  font-medium"
                                   : "dark:text-white/60 text-black/60  hover:text-black dark:hover:text-white"
                               }
                             >
-                              {course.title}
+                              {child.title}
                             </Link>
                           </li>
                         );

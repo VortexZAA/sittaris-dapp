@@ -17,11 +17,18 @@ const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 // convert to functional component
 
-const ApexChart = ({
+const ZoneApexChart = ({
   seriesNames = true,
-  height = 280,
+  zoneData = {
+    label: "Zone 1",
+    key: "plants/P25829",
+  },
+  height = 350,
+  align = "left",
 }: {
   seriesNames?: boolean;
+  zoneData?: { label: string; key: string };
+  align?: string;
   height?: number;
 }) => {
   const { darkMode } = useAppSelector(selectData);
@@ -84,9 +91,13 @@ const ApexChart = ({
       );
       setColumnData(line);
     } catch (error: any) {
+      alert(error.message);
       console.log("error", error);
     }
   }
+  useEffect(() => {
+    setZone(zoneData);
+  }, []);
   useEffect(() => {
     getData();
   }, [granularities, zone]);
@@ -179,16 +190,13 @@ const ApexChart = ({
   console.log("data", data);
 
   return (
-    <div className="w-full apexChart flex flex-col text-black dark:text-white py-6 ">
-      <div className="w-full flex items-end text-base gap-3 text-black/80 dark:text-white/80">
-        <div className="w-1/3 2xl:w-1/4 max-w-xs">
-          <ZoneDropDown
-            placement="bottom-end"
-            setZone={setZone}
-            zone={zone}
-            data={data}
-          />
-        </div>
+    <div className="w-full apexChart flex flex-col text-black dark:text-white py-0 gap-3 ">
+      <div
+        className="w-full flex items-end text-xl gap-3 text-black/80 dark:text-white/80"
+        style={{
+          justifyContent: align === "left" ? "flex-start" : "flex-end",
+        }}
+      >
         <div className="flex items-center gap-2 ">
           Period: <PeriodDropDown period={period} setPeriod={setPeriod} />{" "}
         </div>
@@ -202,15 +210,17 @@ const ApexChart = ({
           />
         </div>
       </div>
-      <Chart
-        options={options}
-        series={series}
-        type="line"
-        height={height}
-        width={"100%"}
-      />
+      <div className="border-[3px] border-black/20 dark:border-white/20 rounded-[18px] px-6 py-3 w-full">
+        <Chart
+          options={options}
+          series={series}
+          type="line"
+          height={height}
+          width={"100%"}
+        />
+      </div>
     </div>
   );
 };
 
-export default ApexChart;
+export default ZoneApexChart;

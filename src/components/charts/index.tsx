@@ -2,6 +2,7 @@ import Dropdown from "../tailwind/Dropdown";
 import { useEffect, useState } from "react";
 import { Granularities } from "@/types";
 import { PeriodData } from "@/data/period";
+import { Zones } from "@/data/zones";
 
 export function PeriodDropDown({
   period,
@@ -24,7 +25,7 @@ export function PeriodDropDown({
         </div>
       }
     >
-      <div className="flex flex-col py-2 gap-2 bg-black/15 backdrop-blur-sm border-black/60 dark:border-white/60 border  text-white rounded-lg">
+      <div className="flex flex-col py-2 gap-2 bg-black/50 backdrop-blur-sm border-black/60 dark:border-white/60 border  text-white rounded-lg">
         {PeriodData.map((item, index) => (
           <button
             key={index}
@@ -81,7 +82,7 @@ export function GranularitiesDropDown({
         </div>
       }
     >
-      <div className="flex flex-col gap-2 py-2 bg-black/15 backdrop-blur-sm border-black/60 dark:border-white/60 border text-white rounded-lg">
+      <div className="flex flex-col gap-2 py-2 bg-black/50 backdrop-blur-sm border-black/60 dark:border-white/60 border text-white rounded-lg">
         {PeriodData.find((item) => {
           return item.key === period.key;
         })?.granularities.map((item: any, index) => (
@@ -126,13 +127,18 @@ export const DownIcon = (props: React.SVGProps<SVGSVGElement>) => {
 };
 
 export function ZoneDropDown({
+  zone,
+  setZone,
   data,
   placement = "bottom-start",
 }: {
+  zone: any;
+  setZone: Function;
   data: any;
   placement?: string;
 }) {
-  const [zone, setZone] = useState(data[0]);
+  
+  
   return (
     <Dropdown
       offset={[0, 4]}
@@ -145,21 +151,21 @@ export function ZoneDropDown({
         </div>
       }
     >
-      <div className="flex flex-col py-2 gap-2 min-w-[300px] bg-black/15 backdrop-blur-sm border-black/60 dark:border-white/60 border  text-white rounded-lg">
+      <div className="flex flex-col py-2 gap-2 w-full px-4 bg-black/50 backdrop-blur-sm border-black/60 dark:border-white/60 border  text-white rounded-lg">
         {data.map((item: any, index: number) => (
           <button
             key={index}
             onClick={() =>
               setZone({
-                label: item.label,
-                key: item.key,
+                label: item?.label,
+                key: item?.key,
               })
             }
             className={`flex items-center gap-2 px-2 hover:text-[#03AE5A] ${
-              data.key === item.key ? "text-[#03AE5A]" : ""
+               zone?.key === item.key ? "text-[#03AE5A]" : ""
             } `}
           >
-            <span>{item.label}</span>
+            <span>{item?.label}</span>
           </button>
         ))}
       </div>

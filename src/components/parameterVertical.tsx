@@ -5,7 +5,7 @@ import { InfoIcon } from "./icons";
 import Synaptiq from "@/services/synaptiq";
 import { PeriodData } from "@/data/period";
 
-export default function ParametreVertical() {
+export default function ParametreVertical({plant= "plants/P25829"}: {plant?: string}) {
   const [activeParametre, setActiveParametre] = useState(true);
   const [parameterData, setParameterData] = useState({
     energy: "0",
@@ -41,7 +41,8 @@ export default function ParametreVertical() {
         gran?.["default-granularity"] || "1-hours",
         "energy.specific",
         start_date || "",
-        end_date || ""
+        end_date || "",
+        plant
       );
       let sumSpecific = specific.data.reduce(
         (acc: any, item: any) => acc + item[1][0][0],
@@ -57,7 +58,8 @@ export default function ParametreVertical() {
         gran?.["default-granularity"] || "1-hours",
         "energy.generation",
         start_date || "",
-        end_date || ""
+        end_date || "",
+        plant
       );
       let sumEnergy = energy.data.reduce(
         (acc: any, item: any) => acc + item[1][0][0],
@@ -76,7 +78,7 @@ export default function ParametreVertical() {
     getSumData();
   }, [parameterPeriod]);
   return (
-    <div className={`w-full flex flex-col`}>
+    <div className={`w-full flex flex-col gap-3`}>
       <div className="flex items-center gap-3 w-full justify-between">
         <button
           /* onClick={() => setActiveParametre(!activeParametre)} */
@@ -109,7 +111,7 @@ export default function ParametreVertical() {
         />
       </div>
       <AnimateHeight height={activeParametre ? "auto" : 0}>
-        <div className="w-full grid gap-3 py-3 text-black dark:text-white">
+        <div className="w-full grid gap-3 md:gap-6 py-3 text-black dark:text-white">
           {[
             {
               label: "Energy (Meter)",

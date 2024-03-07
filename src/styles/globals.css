@@ -40,6 +40,21 @@ body .tox-statusbar__branding {
     border-radius: 8px;
     background: linear-gradient(90deg, #083432 -11.31%, #03ae5a 160.01%);
   }
+  .zoneCard {
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(1, 21, 19, 0.4);
+    backdrop-filter: blur(17px);
+  }
+  .levelCard {
+    display: flex;
+    max-width: 163px;
+    align-items: center;
+    border-radius: 8px;
+    border: 3px solid #fff15f;
+    background: linear-gradient(90deg, #fff15f 0%, #f6911d 160.12%);
+    @apply px-6 py-3 justify-center text-base font-bold;
+  }
   .titleBack {
     border-radius: 15px;
     background: rgba(255, 255, 255, 0.4);
@@ -52,7 +67,26 @@ body .tox-statusbar__branding {
     box-shadow: 1px 4px 11px 0px rgba(11, 66, 32, 0.85) inset;
     backdrop-filter: blur(17px);
   }
-
+  .card {
+    border-radius: 8px;
+    @apply p-3 md:p-4 border dark:border-white/40 border-black/40 gap-3 flex flex-col h-full justify-between w-full;
+  }
+  .inlineBtn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 8px;
+    background: #03ae5a;
+    @apply px-6 py-2 justify-center text-base font-medium;
+  }
+  .outlineBtn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 8px;
+    border: 2px solid #03ae5a;
+    @apply px-6 py-2 justify-center text-base font-medium;
+  }
   .bgGradient {
     background: radial-gradient(
         100% 100% at 38.06% 0%,
