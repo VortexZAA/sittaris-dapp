@@ -15,6 +15,7 @@ import AnimateHeight from "react-animate-height";
 import pb from "@/lib/pocketbase";
 import { useAppDispatch, useAppSelector } from "@/hook/redux/hooks";
 import { darkModeTogle, selectData, toggleMenu } from "@/redux/auth/auth";
+import { Zones } from "@/data/zones";
 
 export default function Sidebar() {
   const router = useRouter();
@@ -22,7 +23,7 @@ export default function Sidebar() {
   const dispatch = useAppDispatch();
 
   const pathname = router.pathname;
-  const { path } = router.query as { path: string };
+  const { id } = router.query as { id: string };
   useEffect(() => {
     //dispatch(toggleMenu(localStorage.getItem("currentMenu") || ""));
     const local = localStorage.getItem("darkMode");
@@ -59,23 +60,12 @@ export default function Sidebar() {
       title: "Stake",
       icon: "",
       path: "/stake",
-      children: [
-        {
-          id: 0,
-          title: "Zone 1",
-          pathName: "1",
-        },
-        {
-          id: 1,
-          title: "Zone 2",
-          pathName: "2",
-        },
-        {
-          id: 2,
-          title: "Zone 3",
-          pathName: "3",
-        },
-      ],
+      children: 
+        Zones.map((zone, index) => ({
+          id: index,
+          title: "Zone " + (index + 1),
+          pathName: (index + 1).toString(),
+        })),
     },
     {
       id: 3,
@@ -91,12 +81,12 @@ export default function Sidebar() {
     },
   ];
   //console.log(pathname);
-  console.log(currentMenu);
+  //console.log(currentMenu);
   const isCurrentMenu = (item: any) => {
     return (
       pathname === item.path ||
       (item?.children &&
-        item?.children?.filter((course: any) => course.pathName === path)
+        item?.children?.filter((item: any) => item.pathName === id)
           .length > 0)
     );
   };
@@ -114,11 +104,11 @@ export default function Sidebar() {
           <li>
             <div className="flex gap-0 items-center">
               <Link
-                href="/profile"
+                href="/public-sale"
                 className={`flex items-center font-fontspringBold font-bold gap-3 textStyle ${
-                  pathname === "#"
-                    ? " text-purple-600  font-medium"
-                    : " dark:hover:text-white hover:text-black"
+                  pathname === "/public-sale"
+                    ? "   font-medium"
+                    : " "
                 } `}
               >
                 <span>Public Sale</span>
@@ -160,7 +150,7 @@ export default function Sidebar() {
               </div>
               {item?.children && (
                 <AnimateHeight height={currentMenu === item.title ? "auto" : 0}>
-                  <ul className="flex flex-col w-full gap-3 pt-3 ">
+                  <ul className="flex list-disc flex-col w-full gap-2 pt-3 font-satoshi ">
                     {item?.children &&
                       item?.children?.length > 0 &&
                       item?.children.map((child: any) => {
@@ -169,9 +159,9 @@ export default function Sidebar() {
                             <Link
                               href={`${item.path}/${child.pathName}`}
                               className={
-                                path === child.pathName
-                                  ? "gradientText  text-black dark:white  font-medium"
-                                  : "dark:text-white/60 text-black/60  hover:text-black dark:hover:text-white"
+                                id === `${child.id+1}`
+                                  ? "text-sittaris-700 font-medium"
+                                  : "dark:text-white/60 text-black/60  hover:text-sittaris-700 dark:hover:text-sittaris-700"
                               }
                             >
                               {child.title}
