@@ -5,7 +5,13 @@ import { InfoIcon } from "./icons";
 import Synaptiq from "@/services/synaptiq";
 import { PeriodData } from "@/data/period";
 
-export default function ParametreVertical({plant= "plants/P25829"}: {plant?: string}) {
+export default function ParametreVertical({
+  plantKey = "plants/P25829",
+  addClass = "",
+}: {
+  plantKey?: string;
+  addClass?: string;
+}) {
   const [activeParametre, setActiveParametre] = useState(true);
   const [parameterData, setParameterData] = useState({
     energy: "0",
@@ -17,7 +23,16 @@ export default function ParametreVertical({plant= "plants/P25829"}: {plant?: str
     label: "Yesterday",
     key: "yesterday",
   });
+  const [plant, setPlant] = useState(plantKey);
   const [token, setToken] = useState("");
+  useEffect(() => {
+    setPlant(plantKey);
+  }, [plantKey]);
+
+  useEffect(() => {
+    getSumData();
+  }, [plant]);
+
   const synaptiq = Synaptiq();
   async function getSumData() {
     try {
@@ -78,13 +93,13 @@ export default function ParametreVertical({plant= "plants/P25829"}: {plant?: str
     getSumData();
   }, [parameterPeriod]);
   return (
-    <div className={`w-full flex flex-col gap-3`}>
+    <div className={`w-full flex flex-col gap-1 ${addClass} `} >
       <div className="flex items-center gap-3 w-full justify-between">
         <button
           /* onClick={() => setActiveParametre(!activeParametre)} */
           className="flex items-center text-2xl gap-2 text-sittaris-300"
         >
-         <h3>Parameter</h3>
+          <h3>Parameter</h3>
           {/* <svg
             width="16"
             height="16"
@@ -111,7 +126,7 @@ export default function ParametreVertical({plant= "plants/P25829"}: {plant?: str
         />
       </div>
       <AnimateHeight height={activeParametre ? "auto" : 0}>
-        <div className="w-full grid gap-3 md:gap-6 py-3 text-black dark:text-white">
+        <div className="w-full grid gap-3 md:gap-6 py-3 ">
           {[
             {
               label: "Energy (Meter)",

@@ -19,15 +19,14 @@ const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 const ZoneApexChart = ({
   seriesNames = true,
-  zoneData = {
-    label: "Zone 1",
-    key: "plants/P25829",
-  },
+  zoneData,
+  zoneId = 1,
   height = 350,
   align = "left",
 }: {
   seriesNames?: boolean;
   zoneData?: { label: string; key: string };
+  zoneId?: number;
   align?: string;
   height?: number;
 }) => {
@@ -36,10 +35,12 @@ const ZoneApexChart = ({
   const [line, setLineData]: any = useState([]);
   const [column, setColumnData]: any = useState([]);
   const [data, setData] = useState<any[]>([]);
-  const [zone, setZone] = useState({
-    label: "Zone 1",
-    key: "plants/P25829",
-  });
+  const [zone, setZone] = useState(
+    zoneData || {
+      label: "Zone " + zoneId,
+      key: Zones[zoneId - 1]?.ref || "plants/P25829",
+    }
+  );
   const [period, setPeriod] = useState({
     label: "Yesterday",
     key: "yesterday",
@@ -95,9 +96,6 @@ const ZoneApexChart = ({
       console.log("error", error);
     }
   }
-  useEffect(() => {
-    setZone(zoneData);
-  }, []);
   useEffect(() => {
     getData();
   }, [granularities, zone]);

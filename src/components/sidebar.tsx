@@ -71,13 +71,13 @@ export default function Sidebar() {
       id: 3,
       title: "Leaderboard",
       icon: "",
-      path: "#",
+      path: "/leaderboard",
     },
     {
       id: 4,
       title: "Buy SIT Token",
       icon: "",
-      path: "#",
+      path: "/buy-sit",
     },
   ];
   //console.log(pathname);
@@ -95,7 +95,7 @@ export default function Sidebar() {
       className={` font-fontspring w-72 flex pt-12 border-r border-sittaris-300/10 px-3 md:px-4`}
     >
       {
-        <ul className="flex flex-col gap-8 text-base z-10 text-black/60 dark:text-white/60 h-[85vh] overflow-y-auto w-full pb-12 py-2">
+        <ul className="flex flex-col gap-8 text-base z-10 text-black/70 dark:text-white/70 h-[85vh] overflow-y-auto w-full pb-12 py-2">
           <li key={"connectwallet"} className="w-full">
             <button className="flex justify-center items-center gap-0 hover:text-black transition-colors dark:hover:text-white border-4 w-full px-2 py-4 rounded-lg border-sittaris-800">
               Connect Wallet
@@ -175,7 +175,7 @@ export default function Sidebar() {
             </li>
           ))}
           <li>
-            <button className="w-full">
+            <button className="w-full darkmode">
               <input
                 type="checkbox"
                 id="darkmode-toggle"

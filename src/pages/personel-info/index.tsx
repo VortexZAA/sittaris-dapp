@@ -42,7 +42,7 @@ export default function Home() {
                 <ParametreVertical />
               </div>
               <div className=" w-2/3 ">
-                <ZoneApexChart height={280} seriesNames={true} align="right" />
+                <ZoneApexChart height={280} zoneId={index+1} seriesNames={true} align="right" />
               </div>
             </div>
           );

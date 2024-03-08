@@ -146,7 +146,7 @@ export function ZoneDropDown({
       btnClassName="block p-2  dark:text-white w-full "
       button={
         <div className="flex text-white items-center justify-between hover:text-[#03AE5A] gap-2 zeroBtn py-4 px-6 w-full">
-          {zone.label}
+          {zone?.label}
           <DownIcon className="w-4 h-fit" />
         </div>
       }
@@ -162,7 +162,7 @@ export function ZoneDropDown({
               })
             }
             className={`flex items-center gap-2 px-2 hover:text-[#03AE5A] ${
-               zone?.key === item.key ? "text-[#03AE5A]" : ""
+               zone?.key === item?.key ? "text-[#03AE5A]" : ""
             } `}
           >
             <span>{item?.label}</span>

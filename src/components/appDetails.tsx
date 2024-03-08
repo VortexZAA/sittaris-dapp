@@ -4,12 +4,14 @@ import { InfoIcon } from "./icons";
 export function AppDetails({
   vertical = false,
   getData,
+  addClass = "",
 }: {
   vertical?: boolean;
   getData?: {
     capacity: string;
     stake: string;
   };
+  addClass?: string;
 }) {
   const [data, setData] = useState(
     getData || {
@@ -18,7 +20,7 @@ export function AppDetails({
     }
   );
   return (
-    <div className="flex flex-col gap-6 w-full ">
+    <div className={`flex flex-col gap-4 w-full ${addClass} `}>
       <h3 className="text-sittaris-300">Sittaris App Details</h3>
       <div
         className={` ${
@@ -32,7 +34,7 @@ export function AppDetails({
               <InfoIcon />
             </button>
           </h4>
-          <span className="text-sittaris-700">{data.capacity}</span>
+          <span className="text-sittaris-700">{data?.capacity}</span>
         </div>
         <div className="flex justify-between items-center w-full">
           <h4>
@@ -41,7 +43,7 @@ export function AppDetails({
               <InfoIcon />
             </button>
           </h4>
-          <span className="text-sittaris-700">{data.stake}</span>
+          <span className="text-sittaris-700">{data?.stake}</span>
         </div>
       </div>
     </div>
