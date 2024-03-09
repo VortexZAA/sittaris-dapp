@@ -6,7 +6,7 @@ import Synaptiq from "@/services/synaptiq";
 import { PeriodData } from "@/data/period";
 
 export default function Parametre() {
-  const [activeParametre, setActiveParametre] = useState(false);
+  const [activeParametre, setActiveParametre] = useState(true);
   const [parameterData, setParameterData] = useState({
     energy: "0",
     specific: "0",

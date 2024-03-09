@@ -101,21 +101,7 @@ export default function Sidebar() {
               Connect Wallet
             </button>
           </li>
-          <li>
-            <div className="flex gap-0 items-center">
-              <Link
-                href="/public-sale"
-                className={`flex items-center font-fontspringBold font-bold gap-3 textStyle ${
-                  pathname === "/public-sale"
-                    ? "   font-medium"
-                    : " "
-                } `}
-              >
-                <span>Public Sale</span>
-                <ArrowLeftGradientIcon />
-              </Link>
-            </div>
-          </li>
+          
           {sidebar.map((item) => (
             <li key={item.id}>
               <div className="flex gap-0 items-center">

@@ -6,11 +6,15 @@ import Loader from "./tailwind/loader";
 import { useAppSelector } from "@/hook/redux/hooks";
 import { selectData } from "@/redux/auth/auth";
 import { LogoTextIcon } from "./icons/logo";
+import { ArrowLeftGradientIcon } from "./icons";
+import { useRouter } from "next/router";
 
 export default function Header() {
   const [loading, setLoading] = useState(false);
   const { loading: Loading } = useAppSelector(selectData);
-  //const router = useRouter();
+  const router = useRouter();
+  const { pathname } = router;
+
   useEffect(() => {
     setLoading(Loading);
   }, [Loading]);
@@ -30,6 +34,16 @@ export default function Header() {
             <LogoTextIcon className="h-4 w-fit" />
           </Link>
           <div className="flex items-center gap-6 dark:text-white">
+            <div className="flex gap-0 items-center">
+              <Link
+                href="/public-sale"
+                className={`flex items-center font-fontspringBold font-bold gap-3 pb-1 textStyle ${
+                  pathname === "/public-sale" ? "   font-medium border-b-2 border-sittaris-300" : " "
+                } `}
+              >
+                <span>Public Sale</span>
+              </Link>
+            </div>
             <div className=" flex items-center gap-2">
               <Image
                 src={"/assets/tokens/tether.svg"}
