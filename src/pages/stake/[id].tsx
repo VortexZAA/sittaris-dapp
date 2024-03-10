@@ -17,6 +17,7 @@ export default function Home() {
   const router = useRouter();
   const { id } = router.query;
   const [zoneID, setZoneID] = useState<number | null>(null);
+  const [modal, setModal] = useState(false);
   useEffect(() => {
     setZoneID(Number(id));
   }, [id, router.query]);

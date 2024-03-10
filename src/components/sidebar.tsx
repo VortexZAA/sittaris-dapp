@@ -219,8 +219,8 @@ const ConnectionModal = ({
 }) => {
   return (
     <Modal title="" setModal={setModal} modal={modal}>
-      <div className="flex  gap-4 w-[60vw] h-full dark:text-white">
-        <div className="flex w-1/4 flex-col justify-start items-start border-r border-black/20 dark:border-white/20  h-full px-6 gap-6">
+      <div className="flex  gap-4 w-[60vw] h-[60vh] dark:text-white">
+        <div className="flex w-1/4 h-full flex-col justify-start items-start border-r border-black/20 dark:border-white/20  px-6 gap-6">
           <h4>Wallets</h4>
           <button
             onClick={connecWallet}
@@ -234,7 +234,7 @@ const ConnectionModal = ({
             <span>Metamask</span>
           </button>
         </div>
-        <div className="w-full  text-justify flex flex-col text-xs md:text-sm 2xl:text-base justify-center items-center gap-10 py-10 px-32 ">
+        <div className=" w-full text-justify flex flex-col text-xs md:text-sm 2xl:text-base justify-center items-center gap-10 py-10 px-32  ">
           <h3 className="font-medium">How do I connect my wallet?</h3>
           <img
             src="/assets/img/metamask.svg"

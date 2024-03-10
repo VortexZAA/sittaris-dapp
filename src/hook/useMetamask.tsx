@@ -154,7 +154,7 @@ export default function useMetamask({
 
       const signer = await provider?.getSigner();
 
-      let signature = await signer.signMessage("Connect To SoulBound :");
+      let signature = await signer.signMessage("Connect To Sittaris dApp");
 
       const [address /* , chainIdNow, networkName */] = await Promise.all([
         signer.getAddress(),
