@@ -54,7 +54,7 @@ export default function Document() {
         <meta name="twitter:image" content="https://example.io/og-image.png" />
         <meta name="twitter:image:alt" content="Sittaris dApp" />
       </Head>
-      <body className="">
+      <body className=" bgGradientLight  dark:bgGradient">
         <Main />
         <NextScript />
       </body>
