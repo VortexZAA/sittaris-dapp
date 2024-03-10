@@ -67,7 +67,7 @@ export default function Sidebar() {
       path: "/stake",
       children: Zones.map((zone, index) => ({
         id: index,
-        title: "Zone " + (index + 1),
+        title: zone.name,
         pathName: (index + 1).toString(),
       })),
     },
@@ -159,7 +159,7 @@ export default function Sidebar() {
               </div>
               {item?.children && (
                 <AnimateHeight height={currentMenu === item.title ? "auto" : 0}>
-                  <ul className="flex list-disc flex-col w-full gap-2 pt-3 font-satoshi ">
+                  <ul className="flex list-disc flex-col w-full gap-2 pt-3 font-satoshi text-xs md:text-base ">
                     {item?.children &&
                       item?.children?.length > 0 &&
                       item?.children.map((child: any) => {

@@ -7,20 +7,20 @@ const Dropdown = (props: any, forwardedRef: any) => {
     const referenceRef = useRef<any>();
     const popperRef = useRef<any>();
 
-    const { styles, attributes } = usePopper(referenceRef.current, popperRef.current, {
-        placement: props.placement || 'bottom-end',
+    const { styles, attributes } = usePopper(referenceRef?.current, popperRef?.current, {
+        placement: props?.placement || 'bottom-end',
         modifiers: [
             {
                 name: 'offset',
                 options: {
-                    offset: props.offset || [0],
+                    offset: props?.offset || [0],
                 },
             },
         ],
     });
 
     const handleDocumentClick = (event: any) => {
-        if (referenceRef.current.contains(event.target) || popperRef.current.contains(event.target)) {
+        if (referenceRef?.current?.contains(event?.target) || popperRef?.current?.contains(event?.target)) {
             return;
         }
 

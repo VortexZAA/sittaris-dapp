@@ -19,6 +19,7 @@ export default function Home() {
   const [zone, setZone] = useState({
     label: "Zone 1",
     key: "plants/P25829",
+    name: Zones[0]?.name || "Zone 1",
   });
   return (
     <MainLayout title="Home">
@@ -43,6 +44,7 @@ export default function Home() {
                       return {
                         label: "Zone " + (index + 1),
                         key: item?.ref || "",
+                        name: item?.name || "",
                       };
                     }) || []
                   }

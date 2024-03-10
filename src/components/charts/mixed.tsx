@@ -36,6 +36,7 @@ const ApexChart = ({
   const [zone, setZone] = useState({
     label: "Zone " + zoneId,
     key: Zones[zoneId - 1]?.ref || "plants/P25829",
+    name: Zones[zoneId - 1]?.name || "Zone " + zoneId,
   });
   const [period, setPeriod] = useState({
     label: "Yesterday",
@@ -190,7 +191,7 @@ const ApexChart = ({
   return (
     <div className="w-full apexChart flex flex-col text-black dark:text-white py-6 ">
       <div className="w-full flex items-end text-base gap-3 text-black/80 dark:text-white/80">
-        <div className="w-1/3 2xl:w-1/4 max-w-xs">
+        <div className="w-1/3 max-w-md">
           <ZoneDropDown
             placement="bottom-end"
             setZone={setZone}

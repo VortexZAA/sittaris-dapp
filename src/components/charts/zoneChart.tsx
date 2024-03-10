@@ -39,6 +39,7 @@ const ZoneApexChart = ({
     zoneData || {
       label: "Zone " + zoneId,
       key: Zones[zoneId - 1]?.ref || "plants/P25829",
+      name: Zones[zoneId - 1]?.name || "Zone " + zoneId,
     }
   );
   const [period, setPeriod] = useState({
@@ -181,6 +182,7 @@ const ZoneApexChart = ({
         return {
           label: "Zone " + (index + 1),
           key: item?.ref || "",
+          name: item?.name || "",
         };
       }) || []
     );
