@@ -1,26 +1,31 @@
 import Link from "next/link";
-import {
-  ArrowLeftGradientIcon,
-  CoursesIcon,
-  DropdowIcon,
-  MoonIcon,
-  MyCoursesIcon,
-  PastCoursesIcon,
-  ProfileIcon,
-  SunIcon,
-} from "@/components/icons";
+import { DropdowIcon, LogOutIcon, MoonIcon, SunIcon } from "@/components/icons";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import AnimateHeight from "react-animate-height";
-import pb from "@/lib/pocketbase";
 import { useAppDispatch, useAppSelector } from "@/hook/redux/hooks";
 import { darkModeTogle, selectData, toggleMenu } from "@/redux/auth/auth";
 import { Zones } from "@/data/zones";
-
+import Modal from "./tailwind/Modal";
+import { ethers } from "ethers";
+import Ethers from "@/lib/ethers";
+import useMetamask from "@/hook/useMetamask";
+import useDisconnect from "@/hook/useDisconnect";
 export default function Sidebar() {
   const router = useRouter();
   const { currentMenu, darkMode } = useAppSelector(selectData);
   const dispatch = useAppDispatch();
+  const { address, chainId } = useAppSelector(selectData);
+  console.log("address", address);
+  const { disconnect } = useDisconnect();
+  const [modal, setModal] = useState(false);
+  const { connecWallet } = useMetamask({
+    modal: modal,
+    Close: () => setModal(false),
+    address: address,
+    chainId,
+  });
+  console.log("connecWallet");
 
   const pathname = router.pathname;
   const { id } = router.query as { id: string };
@@ -60,12 +65,11 @@ export default function Sidebar() {
       title: "Stake",
       icon: "",
       path: "/stake",
-      children: 
-        Zones.map((zone, index) => ({
-          id: index,
-          title: "Zone " + (index + 1),
-          pathName: (index + 1).toString(),
-        })),
+      children: Zones.map((zone, index) => ({
+        id: index,
+        title: "Zone " + (index + 1),
+        pathName: (index + 1).toString(),
+      })),
     },
     {
       id: 3,
@@ -86,8 +90,7 @@ export default function Sidebar() {
     return (
       pathname === item.path ||
       (item?.children &&
-        item?.children?.filter((item: any) => item.pathName === id)
-          .length > 0)
+        item?.children?.filter((item: any) => item.pathName === id).length > 0)
     );
   };
   return (
@@ -96,12 +99,32 @@ export default function Sidebar() {
     >
       {
         <ul className="flex flex-col gap-8 text-base z-10 text-black/70 dark:text-white/70 h-[85vh] overflow-y-auto w-full pb-12 py-2">
-          <li key={"connectwallet"} className="w-full">
-            <button className="flex justify-center items-center gap-0 hover:text-black transition-colors dark:hover:text-white border-4 w-full px-2 py-4 rounded-lg border-sittaris-800">
-              Connect Wallet
-            </button>
+          <li
+            key={"connectwallet"}
+            className="w-full flex items-center gap-3 text-xs dark:text-white"
+          >
+            {address ? (
+              <>
+                <img
+                  src="/assets/img/metamask.svg"
+                  alt="metamask"
+                  className="w-4 h-4"
+                />
+                {address.slice(0, 6) + "..." + address.slice(-6)}
+                <button onClick={disconnect} className="p-2">
+                  <LogOutIcon className="w-5 h-5" />
+                </button>
+              </>
+            ) : (
+              <button
+                onClick={() => setModal(true)}
+                className="flex justify-center items-center gap-0 hover:text-black transition-colors dark:hover:text-white border-4 w-full px-2 py-4 rounded-lg border-sittaris-800"
+              >
+                Connect Wallet
+              </button>
+            )}
           </li>
-          
+
           {sidebar.map((item) => (
             <li key={item.id}>
               <div className="flex gap-0 items-center">
@@ -145,7 +168,7 @@ export default function Sidebar() {
                             <Link
                               href={`${item.path}/${child.pathName}`}
                               className={
-                                id === `${child.id+1}`
+                                id === `${child.id + 1}`
                                   ? "text-sittaris-700 font-medium"
                                   : "dark:text-white/60 text-black/60  hover:text-sittaris-700 dark:hover:text-sittaris-700"
                               }
@@ -176,6 +199,60 @@ export default function Sidebar() {
           </li>
         </ul>
       }
+      <ConnectionModal
+        setModal={setModal}
+        connecWallet={connecWallet}
+        modal={modal}
+      />
     </nav>
   );
 }
+
+const ConnectionModal = ({
+  setModal,
+  modal,
+  connecWallet,
+}: {
+  setModal: (modal: boolean) => void;
+  modal: boolean;
+  connecWallet: () => void;
+}) => {
+  return (
+    <Modal title="" setModal={setModal} modal={modal}>
+      <div className="flex  gap-4 w-[60vw] h-full dark:text-white">
+        <div className="flex w-1/4 flex-col justify-start items-start border-r border-black/20 dark:border-white/20  h-full px-6 gap-6">
+          <h4>Wallets</h4>
+          <button
+            onClick={connecWallet}
+            className="flex w-full  justify-center items-center gap-2"
+          >
+            <img
+              src="/assets/img/metamask.svg"
+              alt="metamask"
+              className="w-6 h-6"
+            />
+            <span>Metamask</span>
+          </button>
+        </div>
+        <div className="w-full  text-justify flex flex-col text-xs md:text-sm 2xl:text-base justify-center items-center gap-10 py-10 px-32 ">
+          <h3 className="font-medium">How do I connect my wallet?</h3>
+          <img
+            src="/assets/img/metamask.svg"
+            alt="metamask"
+            className="w-8 h-8"
+          />
+          <p className="text-black/60 dark:text-white/60 ">
+            If you want to connect to your wallet through your browser, you can
+            select the "Metamask" option from the menu on the left and connect
+            to your wallet using the browser extension.
+          </p>
+          <p className="text-black/60 dark:text-white/60 ">
+            If you want to connect to your mobile wallet, you can select
+            "Metamask Mobile" from the menu on the left and follow the
+            instructions on the screen.
+          </p>
+        </div>
+      </div>
+    </Modal>
+  );
+};

@@ -5,6 +5,7 @@ export interface AuthState {
   address: string;
   role: string;
   nftId: number | null;
+  chainId: string;
   currentMenu: string;
   loading: boolean;
   hidden: boolean;
@@ -17,6 +18,7 @@ export interface AuthState {
 const initialState: AuthState = {
   address: "",
   nftId: null,
+  chainId: "0x89",
   role: "",
   currentMenu: "",
   loading: false,
@@ -66,17 +68,19 @@ export const AuthSlice = createSlice({
     },
     setnftId: (state, action: PayloadAction<number>) => {
       state.nftId = action.payload;
-    },  
+    },
     toggleMenu: (state, action: PayloadAction<string>) => {
       if (action.payload === state.currentMenu) {
         state.currentMenu = "";
-        localStorage.setItem("currentMenu",action.payload);
-      }else {
+        localStorage.setItem("currentMenu", action.payload);
+      } else {
         state.currentMenu = action.payload;
         localStorage.setItem("currentMenu", action.payload);
       }
-    }
-
+    },
+    setChainId: (state, action: PayloadAction<string>) => {
+      state.chainId = action.payload;
+    },
   },
 });
 
@@ -90,7 +94,8 @@ export const {
   setnftId,
   toggleLocale,
   toggleMenu,
-  darkModeTogle
+  darkModeTogle,
+  setChainId,
 } = AuthSlice.actions;
 
 export const selectData = (state: RootState) => ({
@@ -103,6 +108,7 @@ export const selectData = (state: RootState) => ({
   locale: state.Auth.locale,
   currentMenu: state.Auth.currentMenu,
   darkMode: state.Auth.darkMode,
+  chainId: state.Auth.chainId,
 });
 
 export default AuthSlice.reducer;

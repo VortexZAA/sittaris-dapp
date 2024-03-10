@@ -9,6 +9,7 @@ import { AppDetails } from "@/components/appDetails";
 import { Token } from "@/components/token";
 import { useRouter } from "next/router";
 import { use, useEffect, useState } from "react";
+import { Zones } from "@/data/zones";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,9 +19,15 @@ export default function Home() {
   const [zoneID, setZoneID] = useState<number | null>(null);
   useEffect(() => {
     setZoneID(Number(id));
-  }, [id,router.query]);
+  }, [id, router.query]);
   console.log(zoneID);
-  
+
+  useEffect(() => {
+    if (zoneID) {
+      router.push(`/stake/${zoneID}`);
+    }
+  }, [zoneID]);
+
   return (
     <MainLayout title="Home">
       <TitleComp
@@ -31,10 +38,20 @@ export default function Home() {
         <h3 className={`${"font-fontspringBold"} font-semibold`}>Stake</h3>
         <div className=" flex gap-10  w-full ">
           <div className="px-6 w-2/3 border-[3px] text-base border-black/20 dark:border-white/20 rounded-[18px]">
-           {zoneID &&  <ApexChart key={zoneID} height={280} zoneId={zoneID} seriesNames={true} /> }
+            {zoneID && (
+              <ApexChart
+                key={zoneID}
+                height={280}
+                zoneId={zoneID}
+                setZoneId={setZoneID}
+                seriesNames={true}
+              />
+            )}
           </div>
           <div className="w-1/3 flex flex-col gap-10 py-3 ">
-            <ParametreVertical />
+            <ParametreVertical
+              plantKey={zoneID ? Zones[zoneID - 1].ref : "plants/P25829"}
+            />
           </div>
         </div>
         <div className="grid grid-cols-2 gap-6">

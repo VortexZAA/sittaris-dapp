@@ -20,10 +20,12 @@ const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 const ApexChart = ({
   seriesNames = true,
   zoneId = 1,
+  setZoneId,
   height = 280,
 }: {
   seriesNames?: boolean;
   zoneId?: number;
+  setZoneId?: Function;
   height?: number;
 }) => {
   const { darkMode } = useAppSelector(selectData);
@@ -92,7 +94,11 @@ const ApexChart = ({
   useEffect(() => {
     getData();
   }, [granularities, zone]);
-  
+
+  useEffect(() => {
+    setZoneId &&
+      setZoneId(Zones.findIndex((item) => item.ref === zone.key) + 1);
+  }, [zone]);
   const series = [
     {
       name: seriesNames ? "Energy (kWh)" : "",

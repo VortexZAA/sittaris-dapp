@@ -215,8 +215,8 @@ export const BackIcon = (props: React.SVGProps<SVGSVGElement>) => (
     {...props}
   >
     <path
-      fill-rule="evenodd"
-      clip-rule="evenodd"
+      fillRule="evenodd"
+      clipRule="evenodd"
       d="M8.70711 0.792893C9.09763 1.18342 9.09763 1.81658 8.70711 2.20711L3.41421 7.5H19C19.5523 7.5 20 7.94772 20 8.5C20 9.05228 19.5523 9.5 19 9.5H3.41421L8.70711 14.7929C9.09763 15.1834 9.09763 15.8166 8.70711 16.2071C8.31658 16.5976 7.68342 16.5976 7.29289 16.2071L0.292893 9.20711C-0.0976311 8.81658 -0.0976311 8.18342 0.292893 7.79289L7.29289 0.792893C7.68342 0.402369 8.31658 0.402369 8.70711 0.792893Z"
       fill="white"
     />
@@ -385,30 +385,30 @@ export const InfoIcon = (props: React.SVGProps<SVGSVGElement>) => (
     xmlns="http://www.w3.org/2000/svg"
     {...props}
   >
-    <g clip-path="url(#clip0_460_8245)">
+    <g clipPath="url(#clip0_460_8245)">
       <path
         d="M6 11.25C8.89949 11.25 11.25 8.89949 11.25 6C11.25 3.1005 8.89949 0.75 6 0.75C3.1005 0.75 0.75 3.1005 0.75 6C0.75 8.89949 3.1005 11.25 6 11.25Z"
         stroke="currentColor"
-        stroke-opacity="0.6"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeOpacity="0.6"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M6 6V8.25"
         stroke="currentColor"
-        stroke-opacity="0.6"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeOpacity="0.6"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M6 3.75H6.005"
         stroke="currentColor"
-        stroke-opacity="0.6"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeOpacity="0.6"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </g>
     <defs>
@@ -429,8 +429,8 @@ export const ArrowLeftGradientIcon = (props: React.SVGProps<SVGSVGElement>) => (
     {...props}
   >
     <path
-      fill-rule="evenodd"
-      clip-rule="evenodd"
+      fillRule="evenodd"
+      clipRule="evenodd"
       d="M13.2929 4.29289C13.6834 3.90237 14.3166 3.90237 14.7071 4.29289L21.7071 11.2929C22.0976 11.6834 22.0976 12.3166 21.7071 12.7071L14.7071 19.7071C14.3166 20.0976 13.6834 20.0976 13.2929 19.7071C12.9024 19.3166 12.9024 18.6834 13.2929 18.2929L18.5858 13H3C2.44772 13 2 12.5523 2 12C2 11.4477 2.44772 11 3 11H18.5858L13.2929 5.70711C12.9024 5.31658 12.9024 4.68342 13.2929 4.29289Z"
       fill="url(#paint0_linear_511_1426)"
     />
@@ -467,8 +467,8 @@ export const SwitchIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 export const WalletIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" {...props}>
-  <path fill-rule="evenodd" clip-rule="evenodd" d="M2 8C2 5.79086 3.79086 4 6 4H18C20.2091 4 22 5.79086 22 8V16C22 18.2091 20.2091 20 18 20H6C3.79086 20 2 18.2091 2 16V8ZM6 6C4.89543 6 4 6.89543 4 8V16C4 17.1046 4.89543 18 6 18H18C19.1046 18 20 17.1046 20 16V8C20 6.89543 19.1046 6 18 6H6Z" fill="currentColor"/>
-  <path fill-rule="evenodd" clip-rule="evenodd" d="M21 11H3V9H21V11Z" fill="currentColor"/>
-  <path fill-rule="evenodd" clip-rule="evenodd" d="M13 15C13 14.4477 13.4477 14 14 14L17 14C17.5523 14 18 14.4477 18 15C18 15.5523 17.5523 16 17 16L14 16C13.4477 16 13 15.5523 13 15Z" fill="currentColor"/>
+  <path fillRule="evenodd" clipRule="evenodd" d="M2 8C2 5.79086 3.79086 4 6 4H18C20.2091 4 22 5.79086 22 8V16C22 18.2091 20.2091 20 18 20H6C3.79086 20 2 18.2091 2 16V8ZM6 6C4.89543 6 4 6.89543 4 8V16C4 17.1046 4.89543 18 6 18H18C19.1046 18 20 17.1046 20 16V8C20 6.89543 19.1046 6 18 6H6Z" fill="currentColor"/>
+  <path fillRule="evenodd" clipRule="evenodd" d="M21 11H3V9H21V11Z" fill="currentColor"/>
+  <path fillRule="evenodd" clipRule="evenodd" d="M13 15C13 14.4477 13.4477 14 14 14L17 14C17.5523 14 18 14.4477 18 15C18 15.5523 17.5523 16 17 16L14 16C13.4477 16 13 15.5523 13 15Z" fill="currentColor"/>
 </svg>
 );

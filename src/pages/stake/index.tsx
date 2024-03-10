@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { Inter } from "next/font/google";
 import MainLayout from "@/layout/mainLayout";
 import TitleComp from "@/components/title";
 import ApexChart from "@/components/charts/mixed";
@@ -7,10 +6,11 @@ import Parametre from "@/components/parameter";
 import ParametreVertical from "@/components/parameterVertical";
 import { AppDetails } from "@/components/appDetails";
 import { Token } from "@/components/token";
-
-const inter = Inter({ subsets: ["latin"] });
+import { useState } from "react";
+import { Zones } from "@/data/zones";
 
 export default function Home() {
+  const [zoneId, setZoneId] = useState(1);
   return (
     <MainLayout title="Home">
       <TitleComp
@@ -21,10 +21,12 @@ export default function Home() {
         <h3 className={`${"font-fontspringBold"} font-semibold`}>Stake</h3>
         <div className=" flex gap-10  w-full ">
           <div className="px-6 w-2/3 border-[3px] text-base border-black/20 dark:border-white/20 rounded-[18px]">
-            <ApexChart height={280} seriesNames={true} />
+            <ApexChart height={280} setZoneId={setZoneId} seriesNames={true} />
           </div>
           <div className="w-1/3 flex flex-col gap-10 py-3 ">
-            <ParametreVertical />
+            <ParametreVertical
+              plantKey={zoneId ? Zones[zoneId - 1].ref : "plants/P25829"}
+            />
           </div>
         </div>
         <div className="grid grid-cols-2 gap-6">

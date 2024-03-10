@@ -6,10 +6,15 @@ import ApexChart from "@/components/charts/mixed";
 import Parametre from "@/components/parameter";
 import ParametreVertical from "@/components/parameterVertical";
 import { AppDetails } from "@/components/appDetails";
+import { useState } from "react";
+import { Zones } from "@/data/zones";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  const [zoneId, setZoneId] = useState(1);
+  console.log(zoneId);
+  
   return (
     <MainLayout title="Home">
       <TitleComp
@@ -21,13 +26,13 @@ export default function Home() {
           Dashboard
         </h3>
         <div className="px-6 border-[3px] border-black/20 dark:border-white/20 rounded-[18px]">
-          <ApexChart seriesNames={true} />
+          <ApexChart setZoneId={setZoneId} seriesNames={true} />
         </div>
         <div className="grid grid-cols-2 gap-6 text-base font-medium ">
           <div className="flex w-full border-r pr-6 border-white/60">
             <AppDetails />
           </div>
-          <ParametreVertical />
+          <ParametreVertical plantKey={Zones[zoneId-1].ref} />
         </div>
       </div>
     </MainLayout>

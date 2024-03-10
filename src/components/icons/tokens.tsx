@@ -7,7 +7,7 @@ export const TetherTokenIcon = (props: React.SVGProps<SVGSVGElement>) => (
     fill="none"
     {...props}
   >
-    <g clip-path="url(#clip0_459_7405)">
+    <g clipPath="url(#clip0_459_7405)">
       <path
         d="M12 0C18.6271 0 24 5.37288 24 12C24 18.6271 18.6269 24 12 24C5.37312 24 0 18.6286 0 12C0 5.37144 5.37216 0 12 0Z"
         fill="#53AE94"

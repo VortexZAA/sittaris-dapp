@@ -10,6 +10,7 @@ import { InfoIcon } from "@/components/icons";
 import { useState } from "react";
 import ZoneApexChart from "@/components/charts/zoneChart";
 import { Token } from "@/components/token";
+import { Zones } from "@/data/zones";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -29,20 +30,25 @@ export default function Home() {
           </h3>
           <div className="levelCard w-full">Level 5</div>
         </div>
-        {["Zone3", "Zone8"].map((item, index) => {
+        {[1, 2].map((item, index) => {
           return (
             <div key={index} className="p-6 flex gap-10 zoneCard w-full ">
               <div className="w-1/3 flex flex-col gap-10 py-3 ">
                 <div className="flex gap-2 w-full justify-between">
                   <h3 className={`${"font-fontspringBold"} font-semibold`}>
-                    {item}
+                    Zone {item}
                   </h3>
-                  <Token amount={12500}/>
+                  <Token amount={12500} />
                 </div>
-                <ParametreVertical />
+                <ParametreVertical plantKey={Zones[item-1].ref} />
               </div>
               <div className=" w-2/3 ">
-                <ZoneApexChart height={280} zoneId={index+1} seriesNames={true} align="right" />
+                <ZoneApexChart
+                  height={280}
+                  zoneId={index + 1}
+                  seriesNames={true}
+                  align="right"
+                />
               </div>
             </div>
           );

@@ -144,7 +144,7 @@ export default function Home() {
                       onClick={() => setPaymentMethod(item.id)}
                       className={`flex dark:text-white items-center justify-between hover:text-sittaris-800 dark:hover:text-[#03AE5A] gap-3 md:gap-6 2xl:gap-8 border-2 rounded dark:border-white/10  border-black/10 py-2 px-3 h-11 w-fit ${
                         paymentMethod === item.id
-                          ? "border-sittaris-800 dark:border-sittaris-800 text-sittaris-800 dark:text-sittaris-800 bg-white backdrop-blur-sm  dark:bg-white/10 "
+                          ? "border-sittaris-800 dark:border-sittaris-800 !text-sittaris-800  bg-white backdrop-blur-sm  dark:bg-white/10 "
                           : "border-black/10"
                       }`}
                     >

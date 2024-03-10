@@ -5,7 +5,13 @@ import { InfoIcon } from "./icons";
 import Synaptiq from "@/services/synaptiq";
 import { PeriodData } from "@/data/period";
 
-export default function Parametre() {
+export default function Parametre({
+  plantKey = "plants/P25829",
+  addClass = "",
+}: {
+  plantKey?: string;
+  addClass?: string;
+}) {
   const [activeParametre, setActiveParametre] = useState(true);
   const [parameterData, setParameterData] = useState({
     energy: "0",
@@ -17,7 +23,15 @@ export default function Parametre() {
     label: "Yesterday",
     key: "yesterday",
   });
+  const [plant, setPlant] = useState(plantKey);
   const [token, setToken] = useState("");
+  useEffect(() => {
+    setPlant(plantKey);
+  }, [plantKey]);
+  
+  useEffect(() => {
+    getSumData();
+  }, [plant]);
   const synaptiq = Synaptiq();
   async function getSumData() {
     try {
@@ -41,7 +55,8 @@ export default function Parametre() {
         gran?.["default-granularity"] || "1-hours",
         "energy.specific",
         start_date || "",
-        end_date || ""
+        end_date || "",
+        plant
       );
       let sumSpecific = specific.data.reduce(
         (acc: any, item: any) => acc + item[1][0][0],
@@ -57,7 +72,8 @@ export default function Parametre() {
         gran?.["default-granularity"] || "1-hours",
         "energy.generation",
         start_date || "",
-        end_date || ""
+        end_date || "",
+        plantKey
       );
       let sumEnergy = energy.data.reduce(
         (acc: any, item: any) => acc + item[1][0][0],
@@ -96,9 +112,9 @@ export default function Parametre() {
             <path
               d="M12 10L8 6L4 10"
               stroke="#F6911D"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
           </svg>
         </button>

@@ -113,9 +113,9 @@ export default function ParametreVertical({
             <path
               d="M12 10L8 6L4 10"
               stroke="#F6911D"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
           </svg> */}
         </button>
