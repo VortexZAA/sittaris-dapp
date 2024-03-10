@@ -180,6 +180,7 @@ const ApexChart = ({
         return {
           label: "Zone " + (index + 1),
           key: item?.ref || "",
+          name: item?.name || "",
         };
       }) || []
     );

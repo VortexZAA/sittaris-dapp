@@ -159,6 +159,7 @@ export function ZoneDropDown({
               setZone({
                 label: item?.label,
                 key: item?.key,
+                name: item?.name,
               })
             }
             className={`flex items-center gap-2 px-2 hover:text-[#03AE5A] ${
