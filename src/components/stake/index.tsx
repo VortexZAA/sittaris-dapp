@@ -125,7 +125,7 @@ export function UnstakeModal({
             <div className="col-span-2 relative flex items-center">
               <InputText type="text" placeholder="1" />
               <span className="absolute right-3 text-black/60 dark:text-white/60 ">
-                Days
+                SIT
               </span>
             </div>
           </div>
