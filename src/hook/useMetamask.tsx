@@ -169,12 +169,13 @@ export default function useMetamask({
       localStorage.setItem("address", address);
 
       console.log("chainId", chainId);
-      //@ts-ignore
-      Close();
-      dispatch(setAddress(address));
-      ToastSuccess({}).fire({
-        title: "Your wallet is connected successfully.",
-      });
+      if (signature){
+        Close();
+        dispatch(setAddress(address));
+        ToastSuccess({}).fire({
+          title: "Your wallet is connected successfully.",
+        });
+      }
       console.log("status", ethers.formatEther(chainId));
       //dispatch(setChainId(chainId));
       console.log("chainIdNow", chainIdNow, chainId, chain[chainId].chainId);
